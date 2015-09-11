@@ -1,4 +1,4 @@
-ass Solution(object):
+class Solution(object):
     def reverseBetween(self, head, m, n):
         """
         :type head: ListNode
