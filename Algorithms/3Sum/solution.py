@@ -21,8 +21,8 @@ class Solution(object):
                     j += 1
         return res
 
-	#Method 2: Based on two pointers
-	res = []
+        #Method 2: Based on two pointers
+        res = []
         nums.sort()
         for i in range(len(nums) - 2):
             if i == 0 or nums[i] != nums[i - 1]:
