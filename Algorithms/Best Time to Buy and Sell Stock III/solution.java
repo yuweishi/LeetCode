@@ -1,4 +1,5 @@
 public class Solution {
+    #Method 1: go through twice
     public int maxProfit(int[] prices) {
         int[] ans = check(prices);
         int profit1 = ans[0], low = ans[1], high = ans[2];
@@ -22,5 +23,17 @@ public class Solution {
             }
         }
         return new int[] {profit, low, high + 1};
+    }
+
+    #Method 2: DP
+    public int maxProfit(int[] prices) {
+        int buy1 = Integer.MAX_VALUE, buy2 = Integer.MAX_VALUE, sell1 = 0, sell2 = 0;
+        for(int price: prices){                      // Assume we only have 0 money at first
+            sell2 = Math.max(sell2, price - buy2);   // The maximum if we've just sold 2nd stock so far.
+            buy2  = Math.min(buy2,  price - sell1);  // The maximum if we've just buy  2nd stock so far.
+            sell1 = Math.max(sell1, price - buy1);   // The maximum if we've just sold 1nd stock so far.
+            buy1  = Math.min(buy1,  price);          // The maximum if we've just buy  1st stock so far. 
+        }
+        return sell2; ///Since release1 is initiated as 0, so release2 will always higher than release1.
     }
 }

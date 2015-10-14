@@ -1,4 +1,5 @@
 class Solution(object):
+    #Method1: go through twice
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -21,3 +22,18 @@ class Solution(object):
                 high = i
                 profit = dif
         return profit, low, high + 1
+
+    #Method 2: DP
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        buy1 = buy2 = float("-Inf")
+        sell1 = sell2 = 0
+        for price in prices:
+            sell2 = max(sell2, price + buy2)
+            buy2 = max(buy2, sell1 - price)
+            sell1 = max(sell1, price + buy1)
+            buy1 = max(buy1, -price)
+        return sell2
