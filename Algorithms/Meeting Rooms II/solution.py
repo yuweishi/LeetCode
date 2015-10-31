@@ -21,8 +21,8 @@ class Solution(object):
             maxi = max(maxi, len(heap))
         return maxi
 
-	#Method 2: sort twice
-	maxi = 0
+        #Method 2: sort twice
+        maxi = 0
         i = 0
         cur = 0
         n = len(intervals)

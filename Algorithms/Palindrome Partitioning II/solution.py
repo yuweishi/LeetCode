@@ -15,7 +15,7 @@ class Solution(object):
                     dp[end + 1] = min(dp[end + 1], 1 + dp[start])
         return dp[-1]
 
-	#Method 2: time complexity O(n2), space complexity O(n) 
+        #Method 2: time complexity O(n2), space complexity O(n) 
         n = len(s)
         dp = [i for i in xrange(-1, n)]
         for center in xrange(n):
