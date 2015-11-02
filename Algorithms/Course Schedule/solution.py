@@ -19,3 +19,32 @@ class Solution(object):
             if self.find(order, pre, req):
                 return True
         return False
+
+    #Method 2: BFS
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        map = collections.defaultdict(list)
+        indegree = [0] * numCourses
+        queue = []
+        count = numCourses
+        #update the indegree of every node
+        for req in prerequisites:
+            map[req[0]].append(req[1])
+            indegree[req[1]] += 1
+        #put all nodes with indegree == 0 into queue
+        for i in range(count):
+            if indegree[i] == 0:
+                queue.append(i)
+        #topology sort, always pop out the nodes with indegree == 0, and push new nodes in       
+        while queue:
+            current = queue.pop(0)
+            for i in map[current]:
+                indegree[i] -= 1
+                if indegree[i] == 0:
+                    queue.append(i)
+            count -= 1
+        return count == 0
