@@ -16,3 +16,13 @@ class Solution(object):
                     dp[i] = max(dp[i], dp[j] + 1)
             res = max(res, dp[i])
         return res
+
+	#Method 2: Binary search
+        res = 0
+        dp = [1] * len(nums)
+        for num in nums:
+            i = bisect.bisect_left(dp, num, 0, res)
+            dp[i] = num
+            if i == res:
+                res += 1
+        return res
