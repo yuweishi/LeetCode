@@ -33,7 +33,6 @@ public class Solution {
     }
 
     //Method 2: DFS
-    //Method 2: DFS
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, HashSet<Integer>> map = new HashMap<>();
         //initial map with hashset
