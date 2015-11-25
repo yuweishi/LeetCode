@@ -4,12 +4,11 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        buy = noact = float("-inf")
-        sell = cooldown = 0
+        buy = pre_buy = float("-inf")
+        sell = pre_sell = 0
         for price in prices:
-            pre = sell
-            sell = max(sell, noact + price)
-            buy = cooldown - price
-            noact = max(noact, buy)
-            cooldown = pre
+            pre_buy = buy
+            buy = max(buy, pre_sell - price)
+            pre_sell = sell
+            sell = max(sell, pre_buy + price)
         return sell

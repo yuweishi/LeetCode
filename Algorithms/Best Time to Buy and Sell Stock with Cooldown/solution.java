@@ -1,12 +1,11 @@
 public class Solution {
     public int maxProfit(int[] prices) {
-        int buy = Integer.MIN_VALUE, noact = Integer.MIN_VALUE, sell = 0, cooldown = 0;
+        int buy = Integer.MIN_VALUE, buy_pre = Integer.MIN_VALUE, sell = 0, sell_pre = 0;
         for (int price : prices) {
-            int pre = sell;
-            sell = Math.max(sell, noact + price);
-            buy = cooldown - price;
-            noact = Math.max(noact, buy);
-            cooldown = pre;
+            buy_pre = buy;
+            buy = Math.max(buy, sell_pre - price);
+            sell_pre = sell;
+            sell = Math.max(sell, buy_pre + price);
         }
         return sell;
     }
