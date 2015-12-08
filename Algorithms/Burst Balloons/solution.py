@@ -9,9 +9,9 @@ class Solution(object):
         n = len(nums_new)
         dp = [[0] * n for _ in xrange(n)]
         #dp[i][j] represent the max value we can obtain by burst the balloons within i and j
-        for k in xrange(2, n):
-            for left in xrange(0, n - k):
-                right = left + k
+        for length in xrange(2, n):
+            for left in xrange(0, n - length):
+                right = left + length
                 for i in xrange(left + 1, right):
                     dp[left][right] = max(dp[left][right],
                            nums_new[left] * nums_new[i] * nums_new[right] + dp[left][i] + dp[i][right])
